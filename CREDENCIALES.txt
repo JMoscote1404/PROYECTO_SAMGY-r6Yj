@@ -1,0 +1,25 @@
+﻿====================================================================
+SAMGY — Sistema de Gestión de Enfermería Escolar
+Colegio San Alberto Magno — Credenciales de Acceso
+====================================================================
+
+URL de acceso (una vez iniciado el servidor):
+http://127.0.0.1:3000
+
+1. ADMINISTRADOR (Acceso completo, usuarios, configuración y auditoría)
+   Correo:     admin@sanalbertomagno.edu.co
+   Contraseña: Password123!
+
+2. ENFERMERÍA (Operación clínica, fichas médicas, atenciones y reportes)
+   Correo:     enfermeria@sanalbertomagno.edu.co
+   Contraseña: Password123!
+
+--------------------------------------------------------------------
+INICIO RÁPIDO (Requiere Node.js v22.5 o superior)
+--------------------------------------------------------------------
+1. Instalar dependencias:
+   npm run setup
+
+2. Iniciar la plataforma:
+   npm start
+====================================================================

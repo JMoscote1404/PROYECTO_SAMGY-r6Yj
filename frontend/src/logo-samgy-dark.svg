@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326 118" width="326" height="118" role="img" aria-label="SAMGY Logo">
+  <defs>
+    <style>
+      .sam-text-dark {
+        font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+        font-weight: 800;
+        font-size: 56px;
+        letter-spacing: -1.5px;
+      }
+    </style>
+  </defs>
+
+  <!-- Texto SAM en Blanco Puro para Sidebar Oscuro -->
+  <text x="16" y="96" class="sam-text-dark" fill="#FFFFFF">SAM</text>
+
+  <!-- Cola curva envolviendo la base derecha de GY -->
+  <path d="M 224 98 C 272 103, 303 82, 309 55 C 312 43, 301 40, 297 49"
+        fill="none" stroke="#58C4EB" stroke-width="6.5" stroke-linecap="round"/>
+
+  <!-- Letra G personalizada (Cian luminoso) -->
+  <path d="M 218 63
+           A 22.5 22.5 0 1 0 218 88
+           L 218 76 L 201 76"
+        fill="none" stroke="#58C4EB" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Ícono de base de datos (3 cilindros) centrado en el ojo de la G -->
+  <g transform="translate(187, 67.5) scale(0.82)">
+    <ellipse cx="9" cy="3.5" rx="7.5" ry="2.6" fill="#FFFFFF"/>
+    <path d="M 1.5 6.5 C 1.5 9, 16.5 9, 16.5 6.5 L 16.5 9.5 C 16.5 12, 1.5 12, 1.5 9.5 Z" fill="#FFFFFF"/>
+    <path d="M 1.5 11.8 C 1.5 14.3, 16.5 14.3, 16.5 11.8 L 16.5 14.8 C 16.5 17.3, 1.5 17.3, 1.5 14.8 Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Letra Y en Cian luminoso -->
+  <path d="M 238 55 L 256 78 L 274 55 M 256 78 L 256 97"
+        fill="none" stroke="#58C4EB" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Cabecita de gato SAMGY encima de la unión M/G -->
+  <g transform="translate(160, 8)">
+    <path d="M 8 24 L 11 4 L 24 14 Q 32 12 40 14 L 53 4 L 56 24 C 60 32, 54 45, 32 45 C 10 45, 4 32, 8 24 Z"
+          fill="#58C4EB"/>
+    <path d="M 12 20 L 14 10 L 22 16 Z" fill="#9EE0F7"/>
+    <path d="M 52 20 L 50 10 L 42 16 Z" fill="#9EE0F7"/>
+    <path d="M 50 13 L 51.5 17 L 55.5 18.5 L 51.5 20 L 50 24 L 48.5 20 L 44.5 18.5 L 48.5 17 Z"
+          fill="#FFFFFF"/>
+    <circle cx="22" cy="28" r="2.6" fill="#0A1929"/>
+    <circle cx="42" cy="28" r="2.6" fill="#0A1929"/>
+    <polygon points="32,33 29.5,30.5 34.5,30.5" fill="#0A1929"/>
+    <path d="M 26 36 Q 29 39 32 35 Q 35 39 38 36" fill="none" stroke="#0A1929" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 10 30 L 0 28 M 10 33 L -1 34 M 11 36 L 1 39" stroke="#C8EEFA" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M 54 30 L 64 28 M 54 33 L 65 34 M 53 36 L 63 39" stroke="#C8EEFA" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+</svg>

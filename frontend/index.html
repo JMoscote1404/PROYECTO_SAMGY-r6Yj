@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMGY — Sistema de Gestión de Enfermería Escolar</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- CONTENEDOR DE LOGIN (Se muestra si no hay sesión activa) -->
+    <div id="login-container" class="d-none"></div>
+
+    <!-- WRAPPER DE LA APLICACIÓN PRINCIPAL -->
+    <div class="d-flex d-none" id="wrapper">
+        <!-- SIDEBAR BOOTSTRAP -->
+        <aside id="sidebar-wrapper" class="border-end d-flex flex-column justify-content-between no-print">
+            <div>
+                <div class="sidebar-heading px-3 py-3 border-bottom border-secondary-subtle d-flex align-items-center justify-content-center">
+                    <a href="#/inicio" class="text-decoration-none d-flex align-items-center" aria-label="SAMGY Inicio">
+                        <img src="src/logo-samgy-dark.svg" alt="SAMGY Logo" class="sidebar-logo-img">
+                    </a>
+                </div>
+
+                <div class="px-3 py-2 bg-dark bg-opacity-50 text-white-50 extra-small border-bottom border-secondary-subtle d-flex align-items-center">
+                    <i class="bi bi-building me-2 text-samgy-info"></i>
+                    <span class="text-truncate">Colegio San Alberto Magno</span>
+                </div>
+
+                <nav class="list-group list-group-flush my-2" aria-label="Menú principal">
+                    <div class="sidebar-section-label">General</div>
+                    <a href="#/inicio" id="nav-inicio"
+                        class="list-group-item list-group-item-action d-flex align-items-center">
+                        <i class="bi bi-house-door-fill me-3 text-samgy-info"></i>Inicio & Analítica
+                    </a>
+
+                    <div class="sidebar-section-label">Enfermería</div>
+                    <a href="#/estudiantes" id="nav-estudiantes"
+                        class="list-group-item list-group-item-action d-flex align-items-center">
+                        <i class="bi bi-people-fill me-3 text-samgy-info"></i>Mis Estudiantes
+                    </a>
+                    <a href="#/ficha" id="nav-ficha"
+                        class="list-group-item list-group-item-action d-flex align-items-center">
+                        <i class="bi bi-file-earmark-person-fill me-3 text-samgy-info"></i>Ficha Médica
+                    </a>
+                    <a href="#/atenciones" id="nav-atenciones"
+                        class="list-group-item list-group-item-action d-flex align-items-center">
+                        <i class="bi bi-journal-check me-3 text-samgy-info"></i>Atenciones
+                    </a>
+
+                    <div class="sidebar-section-label">Reportes y Control</div>
+                    <a href="#/reportes" id="nav-reportes"
+                        class="list-group-item list-group-item-action d-flex align-items-center">
+                        <i class="bi bi-printer-fill me-3 text-samgy-info"></i>Imprimir / Reportes
+                    </a>
+                    <a href="#/configuracion" id="nav-configuracion"
+                        class="list-group-item list-group-item-action d-flex align-items-center">
+                        <i class="bi bi-gear-fill me-3 text-samgy-info"></i>Configuración
+                    </a>
+                    <a href="#/auditoria" id="nav-auditoria"
+                        class="list-group-item list-group-item-action d-flex align-items-center d-none">
+                        <i class="bi bi-shield-check me-3 text-samgy-info"></i>Auditoría
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Perfil en Sidebar & Botón Cerrar Sesión -->
+            <div class="mt-auto p-3 border-top border-secondary-subtle">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2 overflow-hidden">
+                        <div class="avatar-initials flex-shrink-0" id="sidebar-user-avatar" style="width:38px; height:38px;">--</div>
+                        <div class="text-truncate">
+                            <div class="fw-bold text-white small text-truncate" id="sidebar-user-name">Cargando...</div>
+                            <div class="text-white-50 extra-small text-truncate" id="sidebar-user-role">...</div>
+                        </div>
+                    </div>
+                    <button id="btn-logout" class="btn btn-outline-light btn-sm ms-2 p-1 px-2" title="Cerrar Sesión" aria-label="Cerrar Sesión">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div id="page-content-wrapper" class="w-100 d-flex flex-column min-vh-100">
+            <!-- Encabezado Exclusivo de Impresión (para cualquier vista impresa) -->
+            <div class="d-none d-print-flex justify-content-between align-items-center pb-3 mb-3 border-bottom border-2 border-primary print-only-global-header">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="src/logo-samgy.svg" alt="SAMGY" style="height: 46px; width: auto;">
+                    <div>
+                        <div class="fw-bold font-title text-dark fs-6">Colegio San Alberto Magno</div>
+                        <div class="small text-muted">Servicio de Enfermería Escolar — Reporte del Sistema SAMGY</div>
+                    </div>
+                </div>
+                <div class="text-end small text-muted">
+                    <div class="fw-bold text-dark" id="print-global-title">Documento Clínico</div>
+                    <div>Impreso: <span id="print-global-date">--</span></div>
+                </div>
+            </div>
+
+            <!-- Header Top Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light border-bottom px-4 py-3 shadow-sm sticky-top samgy-topbar no-print">
+                <div class="container-fluid p-0">
+                    <div>
+                        <h4 class="fw-bold font-title text-dark mb-0" id="page-title">Inicio</h4>
+                        <span class="text-muted extra-small">Plataforma Digital — SAMGY</span>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <!-- Menú Desplegable de Impresión Rápida y Reportes -->
+                        <div class="dropdown">
+                            <button class="btn btn-samgy-outline btn-sm dropdown-toggle px-3 py-2 d-flex align-items-center gap-1"
+                                    type="button" id="btn-print-menu" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-printer-fill"></i>
+                                <span>Imprimir</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 py-2" aria-labelledby="btn-print-menu" style="min-width: 265px;">
+                                <li><h6 class="dropdown-header text-uppercase extra-small fw-bold text-samgy-primary">Opciones de Impresión</h6></li>
+                                <li>
+                                    <button class="dropdown-item d-flex align-items-center gap-2 py-2" type="button" id="action-print-current">
+                                        <i class="bi bi-printer text-samgy-primary"></i>
+                                        <div>
+                                            <div class="fw-semibold small">Imprimir vista actual</div>
+                                            <div class="extra-small text-muted">Envía directamente a impresora o PDF</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><h6 class="dropdown-header text-uppercase extra-small fw-bold text-muted">Reportes Formateados</h6></li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#/reportes?tipo=estadistico">
+                                        <i class="bi bi-bar-chart-line-fill text-info"></i>
+                                        <span>Causas Frecuentes y Estadísticas</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#/reportes?tipo=estudiantes">
+                                        <i class="bi bi-people-fill text-primary"></i>
+                                        <span>Listado de Estudiantes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#/reportes?tipo=atenciones">
+                                        <i class="bi bi-journal-medical text-success"></i>
+                                        <span>Historial de Atenciones</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#/reportes?tipo=ficha">
+                                        <i class="bi bi-file-earmark-medical-fill text-danger"></i>
+                                        <span>Ficha Médica Oficial</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href="#/atenciones" class="btn btn-samgy btn-sm px-3 py-2">
+                            <i class="bi bi-plus-lg me-1"></i>Nueva Atención
+                        </a>
+                        <span id="current-date-badge" class="badge bg-light text-dark border px-3 py-2 d-none d-md-inline-flex align-items-center"></span>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- DYNAMIC CONTAINER -->
+            <main id="main-dynamic-container" class="flex-grow-1 p-4">
+                <!-- Secciones dinámicas -->
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js CDN (permitido por CSP en cdn.jsdelivr.net) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <!-- App Scripts (ES6 Module) -->
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
